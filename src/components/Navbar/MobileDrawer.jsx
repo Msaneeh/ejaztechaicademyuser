@@ -7,8 +7,14 @@ import {
   LogIn,
   LogOut,
   X,
+  Heart,
+  ShoppingCart,
+  Bell,
+  User,
+  Settings,
 } from "lucide-react";
 import { DrawerLink } from "./shared";
+import { useCart } from "@/context/CartContext"; // Import useCart for the badge
 
 export default function MobileDrawer({
   open,
@@ -17,6 +23,8 @@ export default function MobileDrawer({
   user,
   onLogout,
 }) {
+  const { cartCount } = useCart(); // Get cart count
+
   return (
     <>
       {open && (
@@ -29,41 +37,84 @@ export default function MobileDrawer({
 
       <aside
         className={[
-          "fixed inset-y-0 left-0 z-50 w-72 max-w-[80vw]",
+          "fixed inset-y-0 left-0 z-50 flex w-72 max-w-[80vw] flex-col",
           "border-r border-ink-line bg-canvas",
           "transform transition-transform duration-200 md:hidden",
           open ? "translate-x-0" : "-translate-x-full",
         ].join(" ")}
         aria-hidden={!open}
       >
-        
-        <div className="border-b border-ink-line">
+        {/* Header */}
+        <div className="shrink-0 border-b border-ink-line">
           {isLoggedIn ? <UserChip user={user} onClose={onClose} /> : <BrandHeader onClose={onClose} />}
         </div>
 
-        
-        <nav className="flex flex-col gap-1 p-3">
-          <DrawerLink to="/explore" icon={Compass} onClick={onClose}>
-            Explore Courses
-          </DrawerLink>
-
-          {isLoggedIn && (
-            <DrawerLink to="/my-learning" icon={GraduationCap} onClick={onClose}>
-              My Learning
+        {/* Scrollable Navigation Area */}
+        <nav className="flex-1 overflow-y-auto p-3 space-y-6">
+          
+          {/* Main Links */}
+          <div className="space-y-1">
+            <p className="px-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-ink-faint">
+              Menu
+            </p>
+            <DrawerLink to="/explore" icon={Compass} onClick={onClose}>
+              Explore Courses
             </DrawerLink>
+            
+            {isLoggedIn && (
+              <>
+                <DrawerLink to="/my-learning" icon={GraduationCap} onClick={onClose}>
+                  My Learning
+                </DrawerLink>
+                <DrawerLink to="/wishlist" icon={Heart} onClick={onClose}>
+                  Wishlist
+                </DrawerLink>
+                <DrawerLink to="/cart" icon={ShoppingCart} onClick={onClose} badge={cartCount}>
+                  Cart
+                </DrawerLink>
+                <DrawerLink to="/notifications" icon={Bell} onClick={onClose} badge={3}>
+                  Notifications
+                </DrawerLink>
+              </>
+            )}
+          </div>
+
+          {/* Account Links (Only if logged in) */}
+          {isLoggedIn && (
+            <div className="space-y-1">
+              <p className="px-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-ink-faint">
+                Account
+              </p>
+              <DrawerLink to="/profile" icon={User} onClick={onClose}>
+                Profile
+              </DrawerLink>
+              <DrawerLink to="/settings" icon={Settings} onClick={onClose}>
+                Settings
+              </DrawerLink>
+            </div>
           )}
 
-          <DrawerLink to="/teach" icon={BookOpen} onClick={onClose}>
-            Teach on EjazTech.AI
-          </DrawerLink>
+          {/* Other Links */}
+          <div className="space-y-1">
+            <p className="px-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-ink-faint">
+              More
+            </p>
+            <DrawerLink to="/teach" icon={BookOpen} onClick={onClose}>
+              Teach on EjazTech.AI
+            </DrawerLink>
+          </div>
+
         </nav>
 
-      
-        <div className="absolute bottom-4 left-3 right-3">
+        {/* Footer (Fixed at bottom) */}
+        <div className="shrink-0 border-t border-ink-line p-3">
           {isLoggedIn ? (
             <button
               type="button"
-              onClick={onLogout}
+              onClick={() => {
+                onLogout();
+                onClose();
+              }}
               className="
                 flex w-full items-center justify-center gap-2 rounded-full
                 border border-ink-line bg-surface px-4 py-2.5

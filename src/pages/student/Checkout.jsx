@@ -8,7 +8,6 @@ import {
   Loader2,
   X,
   CreditCard,
-  AlertCircle,
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/hooks/useAuth";
@@ -49,16 +48,23 @@ export default function Checkout() {
   };
 
   // Triggered inside the payment modal when submitting card details
-  const handleProcessPayment = (e) => {
-    e.preventDefault();
+  const handleProcessPayment = (event) => {
+    event.preventDefault();
     setIsProcessing(true);
     
     // Simulate a 3-second API delay (e.g., contacting Paystack)
+        // Simulate a 3-second API delay
     setTimeout(() => {
       setIsProcessing(false);
       setShowPaymentModal(false);
       setPaymentSuccess(true);
       
+      // --- NEW CODE: Save purchased courses to enrollments ---
+      const enrolled = JSON.parse(localStorage.getItem("ejaztech_enrollments") || "[]");
+      const newlyEnrolled = [...enrolled, ...selectedIds];
+      localStorage.setItem("ejaztech_enrollments", JSON.stringify(newlyEnrolled));
+      // -------------------------------------------------------
+
       clearCart();
 
       // Redirect after 2 seconds of showing the success screen

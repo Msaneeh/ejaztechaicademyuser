@@ -9,7 +9,6 @@ import {
   CheckCircle2,
   Lock,
   ChevronDown,
-  Globe,
   Award,
   ShoppingCart,
   AlertCircle,
@@ -31,8 +30,6 @@ export default function CourseDetail() {
   const [isAdding, setIsAdding] = useState(false);
 
 
-
-
   // 404 if course ID is wrong
   if (!course) {
     return (
@@ -48,12 +45,21 @@ export default function CourseDetail() {
   }
 
   // --- Action Handlers ---
-  const handleEnrollFree = () => {
+   const handleEnrollFree = () => {
     if (!user) {
       navigate(`/auth?redirect=/courses/${course.id}`);
       return;
     }
-    alert(`Successfully enrolled in ${course.title} for free!`);
+    
+    // 1. Get current enrollments from local storage
+    const enrolled = JSON.parse(localStorage.getItem("ejaztech_enrollments") || "[]");
+    
+    // 2. Add this course if not already there
+    if (!enrolled.includes(course.id)) {
+      localStorage.setItem("ejaztech_enrollments", JSON.stringify([...enrolled, course.id]));
+    }
+
+    alert(`Successfully enrolled in ${course.title}!`);
     navigate(`/learn/${course.id}`);
   };
 

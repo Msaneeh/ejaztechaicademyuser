@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   Heart,
@@ -8,62 +8,31 @@ import {
   PlayCircle,
   Trash2,
 } from "lucide-react";
-
-/* ------------------------------------------------------------------ */
-/* MOCK DATA (Saved Courses)                                           */
-/* ------------------------------------------------------------------ */
-const initialWishlist = [
-  {
-    id: "computer-vision",
-    title: "Computer Vision",
-    mentor: "Eng. Ibrahim",
-    category: "AI",
-    difficulty: "Advanced",
-    rating: 4.9,
-    duration: "7h 50m",
-    lessons: 38,
-    price: "Free",
-    thumbnail: null,
-    description: "Build image classifiers, detectors, and pipelines using modern CV libraries and models.",
-  },
-  {
-    id: "python-foundations",
-    title: "Python Foundations",
-    mentor: "Eng. Fatima",
-    category: "Backend",
-    difficulty: "Beginner",
-    rating: 4.8,
-    duration: "6h 15m",
-    lessons: 30,
-    price: "Free",
-    thumbnail: null,
-    description: "Learn Python from zero — syntax, data structures, functions, OOP, and your first real project.",
-  },
-  {
-    id: "data-science",
-    title: "Data Science Essentials",
-    mentor: "Eng. Maryam",
-    category: "Data",
-    difficulty: "Intermediate",
-    rating: 4.7,
-    duration: "9h 05m",
-    lessons: 48,
-    price: "Free",
-    thumbnail: null,
-    description: "Turn raw data into decisions with Pandas, visualization, statistics, and real datasets.",
-  },
-];
+import { courses } from "@/mockData/courses"; // Import global data
 
 export default function Wishlist() {
-  const [courses, setCourses] = useState(initialWishlist);
+  const [savedCourses, setSavedCourses] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Remove item from local state (simulates API delete)
+  // Load saved courses from localStorage on mount
+  useEffect(() => {
+    const savedIds = JSON.parse(localStorage.getItem("ejaztech_wishlist") || "[]");
+    // Filter the full courses list by the saved IDs
+    const mySavedCourses = courses.filter((c) => savedIds.includes(c.id));
+    setSavedCourses(mySavedCourses);
+  }, []);
+
+  // Remove item from local state AND localStorage
   const handleRemove = (id) => {
-    setCourses((prev) => prev.filter((c) => c.id !== id));
+    const updatedCourses = savedCourses.filter((c) => c.id !== id);
+    setSavedCourses(updatedCourses);
+    
+    // Update localStorage so the heart icon on the Explore page turns empty
+    const updatedIds = updatedCourses.map((c) => c.id);
+    localStorage.setItem("ejaztech_wishlist", JSON.stringify(updatedIds));
   };
 
-  const filteredCourses = courses.filter((course) =>
+  const filteredCourses = savedCourses.filter((course) =>
     course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     course.mentor.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -77,13 +46,13 @@ export default function Wishlist() {
             Wishlist
           </h1>
           <p className="mt-1 text-sm text-ink-soft">
-            {courses.length} {courses.length === 1 ? "course" : "courses"} saved for later.
+            {savedCourses.length} {savedCourses.length === 1 ? "course" : "courses"} saved for later.
           </p>
         </div>
       </section>
 
       {/* ---------------- Search ---------------- */}
-      {courses.length > 0 && (
+      {savedCourses.length > 0 && (
         <section>
           <div className="relative w-full max-w-md">
             <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-faint" />
@@ -106,7 +75,7 @@ export default function Wishlist() {
 
       {/* ---------------- Course List ---------------- */}
       <section>
-        {courses.length === 0 ? (
+        {savedCourses.length === 0 ? (
           /* Empty State (No items saved) */
           <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-ink-line py-24 text-center">
             <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-ink/5">
@@ -223,7 +192,9 @@ function WishlistCard({ course, onRemove }) {
       {/* Action Button */}
       <div className="mt-2 flex shrink-0 items-center justify-between sm:mt-0 sm:ml-6 sm:flex-col sm:items-end sm:justify-center sm:gap-3">
         <span className="text-base font-semibold text-ink">
-          {course.price}
+          {typeof course.price === "number" 
+            ? `₦${course.price.toLocaleString()}` 
+            : course.price}
         </span>
         <Link
           to={`/courses/${course.id}`}
