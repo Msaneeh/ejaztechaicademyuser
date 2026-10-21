@@ -16,6 +16,59 @@ export const courses = [
     isFree: false,
     thumbnail: null,
     description: "Master modern React from components and hooks to Context, performance, and code splitting.",
+    // ADDED CURRICULUM WITH QUIZ & ASSIGNMENT
+    curriculum: [
+      {
+        title: "Module 1: Getting Started",
+        lessons: [
+          { id: "l1", title: "Welcome to React", duration: "5:20", completed: true },
+          { id: "l2", title: "Setting up your environment", duration: "12:05", completed: true },
+        ],
+      },
+      {
+        title: "Module 2: Core Concepts",
+        lessons: [
+          { id: "l3", title: "Understanding Components", duration: "15:10", completed: false, active: true },
+          { id: "l4", title: "Props and State", duration: "22:45", completed: false },
+        ],
+        quiz: {
+          id: "q1",
+          title: "Module 2 Knowledge Check",
+          questions: [
+            {
+              id: "q1_1",
+              question: "What is a React Component?",
+              options: [
+                "A JavaScript function or class that returns UI",
+                "A CSS stylesheet",
+                "A database table",
+                "A browser extension"
+              ],
+              correctAnswer: 0,
+            },
+            {
+              id: "q1_2",
+              question: "Which hook is used for side effects?",
+              options: ["useState", "useContext", "useEffect", "useReducer"],
+              correctAnswer: 2,
+            }
+          ]
+        },
+        assignment: {
+          id: "a1",
+          title: "Build a Profile Card",
+          instructions: "Create a React component that accepts name, role, and image props and displays them in a styled card. Submit your CodeSandbox link.",
+          dueDate: "2026-10-30",
+        }
+      },
+      {
+        title: "Module 3: Advanced React",
+        lessons: [
+          { id: "l5", title: "Context API", duration: "18:20", completed: false },
+          { id: "l6", title: "Performance Optimization", duration: "16:40", completed: false },
+        ],
+      }
+    ]
   },
   {
     id: "nextjs-fullstack",

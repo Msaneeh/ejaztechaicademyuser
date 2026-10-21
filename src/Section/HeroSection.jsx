@@ -52,7 +52,7 @@ export default function HeroSection() {
             {/* CTAs */}
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
-                to="/register"
+                to="/auth"
                 className="
                   group inline-flex h-11 items-center justify-center gap-2
                   rounded-full bg-primary px-6
