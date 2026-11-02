@@ -1,6 +1,6 @@
 // src/pages/learn/CurriculumList.jsx
 import { PlayCircle, CheckCircle2, HelpCircle, ClipboardList } from "lucide-react";
-import { quizKey } from "./utils";
+import { quizKey } from "../../utils/utils";
 
 const CurriculumList = ({
   curriculum,

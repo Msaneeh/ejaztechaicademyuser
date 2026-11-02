@@ -4,7 +4,7 @@ import SearchBar from "@/components/SearchBar";
 import WishlistCard from "@/components/WishlistCard";
 import WishListEmptyState from "@/components/WishListEmptyState";
 
-export default function Wishlist() {
+const Wishlist = () => {
   const [savedCourses, setSavedCourses] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -80,3 +80,5 @@ export default function Wishlist() {
     </div>
   );
 }
+
+export default Wishlist;

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { PlayCircle, ArrowRight } from "lucide-react";
 
-export default function RecentCourseCard({ course }) {
+const RecentCourseCard = ({ course }) => {
   return (
     <Link
       to={`/learn/${course.id}`}
@@ -43,3 +43,5 @@ export default function RecentCourseCard({ course }) {
     </Link>
   );
 }
+
+export default RecentCourseCard;

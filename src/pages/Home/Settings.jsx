@@ -5,7 +5,6 @@ import {
   User,
   Bell,
   Shield,
-  Bot,
   Sun,
 } from "lucide-react";
 
@@ -15,9 +14,6 @@ import AppearanceSettings from "@/components/AppearanceSettings";
 import NotificationSettings from "@/components/NotificationSettings";
 import SecuritySettings from "@/components/SecuritySettings";
 
-
-
-
 const TABS = [
   { id: "account", label: "Account", icon: User },
   { id: "appearance", label: "Appearance", icon: Sun },
@@ -25,7 +21,7 @@ const TABS = [
   { id: "security", label: "Security", icon: Shield },
 ];
 
-export default function Settings() {
+const Settings = () => {
   const [activeTab, setActiveTab] = useState("account");
 
   return (
@@ -67,3 +63,5 @@ export default function Settings() {
     </div>
   );
 }
+
+export default Settings;

@@ -16,16 +16,16 @@ import ForgotPassword from "@/pages/public/ForgotPassword";
 import NotFound from "@/pages/public/NotFound";
 
 // Student pages
-import Home from "@/pages/student/Home";
-import Explore from "@/pages/student/Explore";
-import CourseDetail from "@/pages/student/CourseDetail";
-import MyLearning from "@/pages/student/MyLearning";
-import Wishlist from "@/pages/student/Wishlist";
-import Notifications from "@/pages/student/Notifications";
-import Profile from "@/pages/student/Profile";
-import Settings from "@/pages/student/Settings";
-import Cart from "@/pages/student/Cart";
-import Checkout from "@/pages/student/Checkout";
+import Home from "@/pages/Home/Home";
+import Explore from "@/pages/Home/Explore";
+import CourseDetail from "@/pages/Home/CourseDetail";
+import MyLearning from "@/pages/Home/MyLearning";
+import Wishlist from "@/pages/Home/Wishlist";
+import Notifications from "@/pages/Home/Notifications";
+import Profile from "@/pages/Home/Profile";
+import Settings from "@/pages/Home/Settings";
+import Cart from "@/pages/Home/Cart";
+import Checkout from "@/pages/Home/Checkout";
 
 // Learn pages
 import LearnEnvironment from "@/pages/learn/LearnEnvironment";

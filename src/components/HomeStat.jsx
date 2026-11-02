@@ -24,4 +24,4 @@ const HomeStat = ({ sta }) => {
   )
 }
 
-export default HomeStat
+export default HomeStat;

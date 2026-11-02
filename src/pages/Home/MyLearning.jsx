@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import { courses } from "@/mockData/courses";
+// components
 import SearchBar from "@/components/SearchBar";
 import MyLearningCard from "@/components/MyLearningCard";
 import GlobalEmptyState from "@/components/GlobalEmptyState";

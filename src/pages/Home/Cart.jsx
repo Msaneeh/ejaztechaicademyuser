@@ -1,7 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import {
-  ArrowLeft,
-} from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/hooks/useAuth";
 import CartEmptyState from "@/components/CartEmptyState";

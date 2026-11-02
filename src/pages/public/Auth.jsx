@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import AuthForm from "@/components/AuthForm";
-import { Button } from "@base-ui/react";
+import AuthForm from "@/components/Auth/AuthForm";
 import { ArrowLeft } from "lucide-react"
 
-export default function Auth() {
+const Auth = () => {
   const [mode, setMode] = useState("login"); // "login" | "register"
   const isLogin = mode === "login";
 
@@ -30,13 +29,12 @@ export default function Auth() {
         </Link>
         <div className="mx-auto w-full max-w-sm">
           {/* Brand */}
-          <Link
-            to="/"
+          <div
             className="inline-flex items-center transition-opacity hover:opacity-80"
             aria-label="EJAZTECH home"
           >
             <img src="/logo.jpg" alt="EJAZTECH.AI" className="h-12 w-auto rounded-full" />
-          </Link>
+          </div>
 
           {/* Heading */}
           <div className="mt-10">
@@ -105,3 +103,5 @@ export default function Auth() {
     </div>
   );
 }
+
+export default Auth;

@@ -1,4 +1,4 @@
-import RecentCourseCard from "@/pages/student/Home/RecentCourseCard";
+import RecentCourseCard from "@/components/RecentCourseCard";
 import SectionLabel from "./SectionLabel";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";

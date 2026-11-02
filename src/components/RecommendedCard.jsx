@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { PlayCircle, Star, Clock, ArrowRight } from "lucide-react";
 
-export default function RecommendedCard({ course }) {
+const RecommendedCard = ({ course }) => {
   return (
     <Link
       to={`/courses/${course.id}`}
@@ -54,3 +54,4 @@ export default function RecommendedCard({ course }) {
     </Link>
   );
 }
+export default RecommendedCard;

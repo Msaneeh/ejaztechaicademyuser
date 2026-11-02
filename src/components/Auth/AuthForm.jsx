@@ -6,6 +6,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
+// components
+import Field from "./Field";
+import InputClass from "./InputClass";
+
 /* ---------- Schemas ---------- */
 const loginSchema = z.object({
   email: z.string().min(1, "Email is required").email("Enter a valid email"),
@@ -24,7 +28,8 @@ const registerSchema = z
     message: "Passwords do not match",
   });
 
-export default function AuthForm({ mode = "login" }) {
+
+const AuthForm = ({ mode = "login" }) => {
   const isLogin = mode === "login";
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,7 +49,7 @@ export default function AuthForm({ mode = "login" }) {
       : { name: "", email: "", password: "", confirmPassword: "" },
   });
 
-  async function onSubmit(values) {
+   const onSubmit = async (values) => {
     setFormError("");
     try {
       if (isLogin) {
@@ -75,7 +80,7 @@ export default function AuthForm({ mode = "login" }) {
             autoComplete="name"
             placeholder="Aisha Bello"
             {...register("name")}
-            className={inputClass(errors.name)}
+            className={InputClass(errors.name)}
           />
         </Field>
       )}
@@ -87,7 +92,7 @@ export default function AuthForm({ mode = "login" }) {
           autoComplete="email"
           placeholder="you@example.com"
           {...register("email")}
-          className={inputClass(errors.email)}
+          className={InputClass(errors.email)}
         />
       </Field>
 
@@ -99,7 +104,7 @@ export default function AuthForm({ mode = "login" }) {
             autoComplete={isLogin ? "current-password" : "new-password"}
             placeholder="••••••••"
             {...register("password")}
-            className={inputClass(errors.password) + " pr-10"}
+            className={InputClass(errors.password) + " pr-10"}
           />
           <button
             type="button"
@@ -131,7 +136,7 @@ export default function AuthForm({ mode = "login" }) {
             autoComplete="new-password"
             placeholder="••••••••"
             {...register("confirmPassword")}
-            className={inputClass(errors.confirmPassword)}
+            className={InputClass(errors.confirmPassword)}
           />
         </Field>
       )}
@@ -177,29 +182,4 @@ export default function AuthForm({ mode = "login" }) {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/* Small helpers                                                       */
-/* ------------------------------------------------------------------ */
-
-function Field({ label, error, children }) {
-  return (
-    <div>
-      <label className="mb-1.5 block text-xs font-medium text-foreground">
-        {label}
-      </label>
-      {children}
-      {error && <p className="mt-1.5 text-xs text-red-600">{error}</p>}
-    </div>
-  );
-}
-
-function inputClass(error) {
-  return [
-    "h-11 w-full rounded-xl border bg-background px-4",
-    "text-sm text-foreground placeholder:text-muted-foreground",
-    "outline-none transition",
-    error
-      ? "border-red-500 focus:ring-2 focus:ring-red-500/20"
-      : "border-border focus:border-foreground/30 focus:ring-2 focus:ring-foreground/5",
-  ].join(" ");
-}
+export default AuthForm;

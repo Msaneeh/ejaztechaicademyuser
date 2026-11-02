@@ -1,6 +1,6 @@
 import SectionLabel from "./SectionLabel";
 import { ChevronRight } from "lucide-react";
-import RecommendedCard from "@/pages/student/Home/RecommendedCard";
+import RecommendedCard from "@/components/RecommendedCard";
 import { Link } from "react-router-dom";
 
 const RecommendedCourses = ({ recCourses}) => {
