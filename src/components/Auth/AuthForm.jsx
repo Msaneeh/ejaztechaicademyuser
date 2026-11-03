@@ -8,7 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 
 // components
 import Field from "./Field";
-import InputClass from "./InputClass";
+import inputClass from "./InputClass";
 
 /* ---------- Schemas ---------- */
 const loginSchema = z.object({
@@ -80,7 +80,7 @@ const AuthForm = ({ mode = "login" }) => {
             autoComplete="name"
             placeholder="Aisha Bello"
             {...register("name")}
-            className={InputClass(errors.name)}
+            className={inputClass(errors.name)}
           />
         </Field>
       )}
@@ -92,7 +92,7 @@ const AuthForm = ({ mode = "login" }) => {
           autoComplete="email"
           placeholder="you@example.com"
           {...register("email")}
-          className={InputClass(errors.email)}
+          className={inputClass(errors.email)}
         />
       </Field>
 
@@ -104,7 +104,7 @@ const AuthForm = ({ mode = "login" }) => {
             autoComplete={isLogin ? "current-password" : "new-password"}
             placeholder="••••••••"
             {...register("password")}
-            className={InputClass(errors.password) + " pr-10"}
+            className={inputClass(errors.password) + " pr-10"}
           />
           <button
             type="button"
@@ -136,7 +136,7 @@ const AuthForm = ({ mode = "login" }) => {
             autoComplete="new-password"
             placeholder="••••••••"
             {...register("confirmPassword")}
-            className={InputClass(errors.confirmPassword)}
+            className={inputClass(errors.confirmPassword)}
           />
         </Field>
       )}

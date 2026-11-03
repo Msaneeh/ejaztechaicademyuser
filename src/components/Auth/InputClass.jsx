@@ -1,4 +1,4 @@
-const InputClass = (error) => {
+const inputClass = (error) => {
   return [
     "h-11 w-full rounded-xl border bg-background px-4",
     "text-sm text-foreground placeholder:text-muted-foreground",
@@ -9,4 +9,4 @@ const InputClass = (error) => {
   ].join(" ");
 }
 
-export default InputClass;
+export default inputClass;

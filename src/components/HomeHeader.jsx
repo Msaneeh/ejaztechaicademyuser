@@ -1,5 +1,4 @@
 
-
 const HomeHeader = ({day, name}) => {
   return (
           <section>
@@ -16,4 +15,4 @@ const HomeHeader = ({day, name}) => {
   )
 }
 
-export default HomeHeader
+export default HomeHeader;
