@@ -1,7 +1,7 @@
 import { getQuizState } from "@/utils/quizSelectors";
-import QuizIntro from "@/components/Learn/quiz/QuizIntro";
-import QuizTaking from "@/components/Learn/quiz/QuizTaking";
-import QuizResults from "@/components/Learn/quiz/QuizResults";
+import QuizIntro from "@/components/Learn/Quiz/QuizIntro";
+import QuizTaking from "@/components/Learn/Quiz/QuizTaking";
+import QuizResults from "@/components/Learn/Quiz/QuizResults";
 
 const QuizView = (props) => {
   const { quiz } = props;
