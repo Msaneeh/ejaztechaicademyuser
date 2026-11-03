@@ -1,8 +1,8 @@
 import { ArrowLeft } from "lucide-react";
-import AssignmentInstructions from "@/components/learn/assignment/AssignmentInstructions";
-import SubmissionForm from "@/components/learn/assignment/SubmissionForm";
-import SubmissionSummary from "@/components/learn/assignment/SubmissionSummary";
-import AssignmentSidebar from "@/components/learn/assignment/AssignmentSidebar";
+import AssignmentInstructions from "@/components/Learn/assignment/AssignmentInstructions";
+import SubmissionForm from "@/components/Learn/assignment/SubmissionForm";
+import SubmissionSummary from "@/components/Learn/assignment/SubmissionSummary";
+import AssignmentSidebar from "@/components/Learn/assignment/AssignmentSidebar";
 
 const AssignmentView = ({
   assignment,
